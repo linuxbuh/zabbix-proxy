@@ -1,1 +1,1 @@
-zabbix-proxy-sqlite3
+zabbix-proxy

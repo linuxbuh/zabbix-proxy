@@ -1,0 +1,22 @@
+---
+version: '3.3'
+
+services:
+  zabbix-proxy:
+    image: zabbix/zabbix-proxy-sqlite3:ubuntu-5.0-latest
+    ports:
+      - 0.0.0.0:${ZABBIX_PROXY_PORT:-10051}:10051
+    environment:
+      - ZBX_PROXYMODE=${ZBX_PROXYMODE:-1}
+      - ZBX_HOSTNAME=${ZBX_HOSTNAME:-zabbix-proxy}
+      - ZBX_SERVER_HOST=77.232.21.123,62.112.124.182,91.206.14.21,91.206.14.41,77.223.111.170,188.246.234.24/29
+      - ZBX_SERVER_PORT=${ZBX_SERVER_PORT:-10051}
+      - ZBX_METADATA=${ZBX_METADATA:-zabbix-proxy}
+      - ZBX_TLSACCEPT=psk
+      - ZBX_TLSPSKIDENTITY=PMDMVpnPSK
+      - ZBX_TLSPSKFILE=/var/lib/zabbix/enc/zabbix_proxy.psk
+      - ZBX_DEBUGLEVEL=${ZBX_DEBUGLEVEL:-0}
+    volumes:
+      - ./enc:/var/lib/zabbix/enc:ro
+    stop_grace_period: 1m
+    restart: always

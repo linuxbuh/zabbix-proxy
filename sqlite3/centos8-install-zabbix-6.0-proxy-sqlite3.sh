@@ -2,17 +2,17 @@
 
 cd /root
 
-rpm -ivh https://repo.zabbix.com/zabbix/5.0/rhel/7/x86_64/zabbix-release-5.0-1.el7.noarch.rpm
+rpm -ivh https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/zabbix-release-6.0-2.el8.noarch.rpm
 
 yum install zabbix-agent zabbix-proxy-sqlite3 zabbix-sql-scripts
 
-gunzip /usr/share/doc/zabbix-proxy-sqlite3-5.0.26/schema.sql.gz
+gunzip /usr/share/doc/zabbix-proxy-sqlite3-6.0.8/schema.sql.gz
 
 mkdir /var/lib/zabbix
 touch /var/lib/zabbix/zabbix_proxy_db
 chown -R zabbix:zabbix /var/lib/zabbix
 
-sqlite3 /var/lib/zabbix/zabbix_proxy_db < /usr/share/doc/zabbix-proxy-sqlite3-5.0.26/schema.sql
+sqlite3 /var/lib/zabbix/zabbix_proxy_db < /usr/share/doc/zabbix-proxy-sqlite3-6.0.8/schema.sql
 
 yum install git
 

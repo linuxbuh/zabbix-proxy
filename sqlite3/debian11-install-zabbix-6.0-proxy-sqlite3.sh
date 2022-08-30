@@ -2,9 +2,9 @@
 
 cd /root
 
-wget https://repo.zabbix.com/zabbix/5.0/debian/pool/main/z/zabbix-release/zabbix-release_5.0-1%2Bbullseye_all.deb
+wget https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bdebian11_all.deb
 
-dpkg -i zabbix-release*.deb
+dpkg -i zabbix-release_6.0-3%2Bdebian11_all.deb
 
 apt-get update
 apt-get install zabbix-proxy-sqlite3

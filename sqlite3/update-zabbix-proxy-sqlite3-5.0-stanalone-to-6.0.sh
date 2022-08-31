@@ -56,12 +56,6 @@ wget -O /tmp/install-zabbix-proxy-sqlite3-stanalone-6.0.sh https://raw.githubuse
 		  						
 			apt-get remove $PAKATGES
 			
-			rm -f /var/lib/zabbix/zabbix_proxy_db
-			
-			rm -f /usr/share/doc/zabbix-proxy-sqlite3/*
-			
-			exec /tmp/install-zabbix-proxy-sqlite3-stanalone-6.0.sh
-			
 	fi
 
 #Устанавливаем какие пакеты качать для Rhel? Centos и производных
@@ -69,13 +63,13 @@ wget -O /tmp/install-zabbix-proxy-sqlite3-stanalone-6.0.sh https://raw.githubuse
 	  	
 			yum remove $PAKATGES
 			
-			rm -f /var/lib/zabbix/zabbix_proxy_db
-			
-			rm -f /usr/share/doc/zabbix-proxy-sqlite3/*
-			
-			exec /tmp/install-zabbix-proxy-sqlite3-stanalone-6.0.sh
-			
-			exec /tmp/install-zabbix-proxy-sqlite3-stanalone-6.0.sh
-			
+					
 	fi
 
+rm -f /var/lib/zabbix/zabbix_proxy_db
+			
+rm -f /usr/share/doc/zabbix-proxy-sqlite3/*
+			
+exec /tmp/install-zabbix-proxy-sqlite3-stanalone-6.0.sh
+			
+exec /tmp/install-zabbix-proxy-sqlite3-stanalone-6.0.sh

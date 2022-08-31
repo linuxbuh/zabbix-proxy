@@ -129,12 +129,18 @@ systemctl stop zabbix-agent2
 			dpkg -i /tmp/zabbix-release_6.0-3%2Bubuntu14.04_all.deb
 			
 		fi
-			
+							
 			apt-get update
 			
 			apt-get remove -y zabbix-agent2
 			
 			apt-get install --only-upgrade -y zabbix-agent zabbix-proxy-sqlite3 zabbix-sql-scripts git zabbix-proxy
+			
+			gunzip /usr/share/zabbix-proxy-sqlite3/schema.sql.gz
+
+			rm -f /var/lib/zabbix/zabbix_proxy_db
+			
+			sqlite3 /var/lib/zabbix/zabbix_proxy_db < /usr/share/zabbix-proxy-sqlite3/schema.sql
 			
 	fi
 
@@ -206,6 +212,8 @@ systemctl start zabbix-proxy
 systemctl start zabbix-proxy-sqlite3
 			
 systemctl status zabbix-proxy-sqlite3
+
+systemctl status zabbix-proxy
 
 wget -O /tmp/update-zabbix-agent-stanalone-5.0-to-6.0.sh https://raw.githubusercontent.com/linuxbuh/zabbix-agent/main/linux/update-zabbix-agent-stanalone-5.0-to-6.0.sh
 

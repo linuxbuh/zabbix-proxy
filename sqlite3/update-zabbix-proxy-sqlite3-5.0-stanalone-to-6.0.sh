@@ -41,7 +41,7 @@ echo -e "\e[1;33;4;44mВаш дистрибутив LINUX - $OSRELEASE\e[0m"
 	    PAKETMANAGER=RPM
 	fi
 
-PAKATGES=zabbix-release zabbix-agent zabbix-agent2 zabbix-proxy zabbix-proxy-sqlite3 zabbix-proxy-mysql zabbix-proxy-pgsql zabbix-sql-scripts
+
 
 systemctl stop zabbix-proxy
 			
@@ -54,14 +54,14 @@ wget -O /tmp/install-zabbix-proxy-sqlite3-stanalone-6.0.sh https://raw.githubuse
 #Устанавливаем какие пакеты качать для Debian и Ubuntu
 	if [ $PAKETMANAGER = DEB ]; then
 		  						
-			apt-get remove $PAKATGES
+			apt-get remove -y zabbix-release zabbix-agent zabbix-agent2 zabbix-proxy zabbix-proxy-sqlite3 zabbix-proxy-mysql zabbix-proxy-pgsql zabbix-sql-scripts
 			
 	fi
 
 #Устанавливаем какие пакеты качать для Rhel? Centos и производных
 	if [ $PAKETMANAGER = RPM ]; then
 	  	
-			yum remove $PAKATGES
+			yum remove -y zabbix-release zabbix-agent zabbix-agent2 zabbix-proxy zabbix-proxy-sqlite3 zabbix-proxy-mysql zabbix-proxy-pgsql zabbix-sql-scripts
 			
 			rm -f /etc/yum.repos.d/zabbix.repo
 				

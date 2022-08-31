@@ -177,14 +177,8 @@ systemctl start zabbix-proxy
 			
 systemctl status zabbix-proxy
 
-git clone https://github.com/linuxbuh/zabbix-agent.git
+wget -O /tmp/update-zabbix-agent-stanalone-5.0-to-6.0.sh https://raw.githubusercontent.com/linuxbuh/zabbix-agent/main/linux/update-zabbix-agent-stanalone-5.0-to-6.0.sh
 
-cp -f /tmp/zabbix-agent/linux/zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf
-			
-cp -f /tmp/zabbix-agent/linux/zabbix_agentd.conf /etc/zabbix_agentd.conf
-
-systemctl start zabbix-agent
-			
-systemctl status zabbix-agent
+exec bash /tmp/update-zabbix-agent-stanalone-5.0-to-6.0.sh
 			
 

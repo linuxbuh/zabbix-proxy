@@ -182,4 +182,4 @@ systemctl start zabbix-proxy
 
 systemctl status zabbix-proxy
 
-exec /tmp/install-zabbix-agent-stanalone-6.0.sh
+exec bash /tmp/install-zabbix-agent-stanalone-6.0.sh

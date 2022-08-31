@@ -43,10 +43,14 @@ echo -e "\e[1;33;4;44mВаш дистрибутив LINUX - $OSRELEASE\e[0m"
 
 	
 mkdir /var/lib/zabbix
+
+mkdir /var/run/zabbix
 			
 touch /var/lib/zabbix/zabbix_proxy_db
             
 chown -R zabbix:zabbix /var/lib/zabbix
+
+chown -R zabbix:zabbix /var/run/zabbix
 
 wget -O /tmp/install-zabbix-agent-stanalone-6.0.sh https://raw.githubusercontent.com/linuxbuh/zabbix-agent/main/linux/install-zabbix-agent-stanalone-6.0.sh
 

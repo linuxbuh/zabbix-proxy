@@ -166,9 +166,9 @@ wget -O /tmp/install-zabbix-agent-stanalone-6.0.sh https://raw.githubusercontent
 			
 			yum install -y zabbix-agent zabbix-proxy-sqlite3 zabbix-sql-scripts git
 			
-			gunzip /usr/share/zabbix-proxy-sqlite3/schema.sql.gz
+			gunzip /usr/share/zabbix-sqlite3/schema.sql.gz
 			
-			sqlite3 /var/lib/zabbix/zabbix_proxy_db < /usr/share/zabbix-proxy-sqlite3/schema.sql
+			sqlite3 /var/lib/zabbix/zabbix_proxy_db < /usr/share/zabbix-sqlite3/schema.sql
 			
 			
 	fi

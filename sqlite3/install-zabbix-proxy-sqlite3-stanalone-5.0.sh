@@ -48,7 +48,7 @@ touch /var/lib/zabbix/zabbix_proxy_db
             
 chown -R zabbix:zabbix /var/lib/zabbix
 
-wget -O /tmp/install-zabbix-agent-stanalone-6.0.sh https://raw.githubusercontent.com/linuxbuh/zabbix-agent/main/linux/install-zabbix-agent-stanalone-5.0.sh
+wget -O /tmp/install-zabbix-agent-stanalone-5.0.sh https://raw.githubusercontent.com/linuxbuh/zabbix-agent/main/linux/install-zabbix-agent-stanalone-5.0.sh
 
 #Устанавливаем какие пакеты качать для Debian и Ubuntu
 	if [ $PAKETMANAGER = DEB ]; then

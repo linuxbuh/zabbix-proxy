@@ -63,11 +63,12 @@ wget -O /tmp/install-zabbix-proxy-sqlite3-stanalone-6.0.sh https://raw.githubuse
 	  	
 			yum remove $PAKATGES
 			
-					
+			rm -f /etc/yum.repos.d/zabbix.repo
+				
 	fi
 
 rm -f /var/lib/zabbix/zabbix_proxy_db
 			
 rm -f /usr/share/doc/zabbix-proxy-sqlite3/*
 			
-exec /tmp/install-zabbix-proxy-sqlite3-stanalone-6.0.sh
+exec bash /tmp/install-zabbix-proxy-sqlite3-stanalone-6.0.sh

@@ -52,6 +52,7 @@ systemctl stop zabbix-agent2
 #Устанавливаем какие пакеты качать для Debian и Ubuntu
 	if [ $PAKETMANAGER = DEB ]; then
 		
+		apt-get remove -y zabbix-proxy-sqlite3 zabbix-proxy zabbix-agent2
 		
 		rm -Rf /etc/apt/sources.list.d/zabbix.list
 		
@@ -123,45 +124,47 @@ systemctl stop zabbix-agent2
 			
 			apt-get remove -y zabbix-agent2
 			
-			apt-get install --only-upgrade -y zabbix-agent zabbix-proxy-sqlite3 zabbix-sql-scripts git
+			apt-get install --only-upgrade -y zabbix-agent zabbix-proxy-sqlite3 zabbix-sql-scripts git zabbix-proxy
 			
 	fi
 
 #Устанавливаем какие пакеты качать для Rhel? Centos и производных
 	if [ $PAKETMANAGER = RPM ]; then
 	  	
-		yum install -y deltarpm
+		yum remove -y zabbix-proxy zabbix-proxy-sqlite3 zabbix-release zabbix-agent2
+		
+		yum install -y deltarpm pcre2
 		
 		if [ $VERSION_OSRELEASE = 9 ]; then
 			
-		rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/9/x86_64/zabbix-release-6.0-3.el9.noarch.rpm
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/9/x86_64/zabbix-release-6.0-3.el9.noarch.rpm
+		
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/9/x86_64/zabbix-proxy-sqlite3-6.0.8-release1.el9.x86_64.rpm
+			
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/9/x86_64/zabbix-sql-scripts-6.0.8-release1.el9.noarch.rpm
 					
 		fi
 		
 		if [ $VERSION_OSRELEASE = 8 ]; then
 			
 			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/zabbix-release-6.0-2.el8.noarch.rpm
+			
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/zabbix-proxy-sqlite3-6.0.8-release1.el8.x86_64.rpm
+			
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/zabbix-sql-scripts-6.0.8-release1.el8.noarch.rpm
 					
 		fi
 		
 		if [ $VERSION_OSRELEASE = 7 ]; then
 			
 			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/7/x86_64/zabbix-release-6.0-2.el7.noarch.rpm
+			
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/7/x86_64/zabbix-proxy-sqlite3-6.0.8-release1.el7.x86_64.rpm
+			
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/7/x86_64/zabbix-sql-scripts-6.0.8-release1.el7.noarch.rpm
 					
 		fi
-		
-		if [ $VERSION_OSRELEASE = 6 ]; then
-			
-			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/6/x86_64/zabbix-release-6.0-2.el6.noarch.rpm
 					
-		fi
-		
-		yum update
-			
-		yum remove -y zabbix-agent2
-			
-		yum upgrade -y zabbix-agent zabbix-proxy-sqlite3 zabbix-sql-scripts git
-				
 	fi
 	
 git clone https://github.com/linuxbuh/zabbix-proxy.git

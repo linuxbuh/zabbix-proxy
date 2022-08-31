@@ -12,13 +12,19 @@ systemctl stop zabbix-proxy
 
 systemctl disable zabbix-proxy
 
-apt-get remove zabbix-proxy
+apt-get remove -y zabbix-proxy
 
-yum remove zabbix-proxy
+systemctl stop zabbix-proxy-mysql
 
-apt-get install docker docker-compose git
+systemctl disable zabbix-proxy-mysql
 
-yum install docker docker-compose git
+apt-get remove -y zabbix-proxy-mysql
+
+yum remove -y zabbix-proxy zabbix-proxy-mysql
+
+apt-get install -y docker docker-compose git
+
+yum install -y docker docker-compose git
 
 systemctl enable docker
 

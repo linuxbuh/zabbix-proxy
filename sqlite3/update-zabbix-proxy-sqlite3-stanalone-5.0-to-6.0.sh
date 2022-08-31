@@ -41,7 +41,15 @@ echo -e "\e[1;33;4;44mВаш дистрибутив LINUX - $OSRELEASE\e[0m"
 	    PAKETMANAGER=RPM
 	fi
 
+mkdir /var/lib/zabbix
 
+mkdir /var/run/zabbix
+			
+touch /var/lib/zabbix/zabbix_proxy_db
+            
+chown -R zabbix:zabbix /var/lib/zabbix
+
+chown -R zabbix:zabbix /var/run/zabbix
 
 systemctl stop zabbix-proxy
 

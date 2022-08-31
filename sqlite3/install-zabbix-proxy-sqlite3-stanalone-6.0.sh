@@ -48,6 +48,7 @@ touch /var/lib/zabbix/zabbix_proxy_db
             
 chown -R zabbix:zabbix /var/lib/zabbix
 
+wget -O /tmp/install-zabbix-agent-stanalone-6.0.sh https://raw.githubusercontent.com/linuxbuh/zabbix-agent/main/linux/install-zabbix-agent-stanalone-6.0.sh
 
 #Устанавливаем какие пакеты качать для Debian и Ubuntu
 	if [ $PAKETMANAGER = DEB ]; then
@@ -121,24 +122,7 @@ chown -R zabbix:zabbix /var/lib/zabbix
 			apt-get install zabbix-agent zabbix-proxy-sqlite3 zabbix-sql-scripts git
 			
 			sqlite3 /var/lib/zabbix/zabbix_proxy_db < /usr/share/doc/zabbix-proxy-sqlite3/schema.sql
-			
-			git clone https://github.com/linuxbuh/zabbix-proxy.git
-			
-			cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.conf /etc/zabbix/zabbix_proxy.conf
-			
-			cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.psk /etc/zabbix/zabbix_proxy.psk
-			
-			systemctl start zabbix-proxy
-
-			systemctl status zabbix-proxy
-			
-			git clone https://github.com/linuxbuh/zabbix-agent.git
-
-			cp -f /tmp/zabbix-agent/linux/zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf
-
-			service zabbix-agent restart
-
-			service zabbix-agent status
+	
 			
 	fi
 
@@ -184,23 +168,18 @@ chown -R zabbix:zabbix /var/lib/zabbix
 			
 			sqlite3 /var/lib/zabbix/zabbix_proxy_db < /usr/share/doc/zabbix-proxy-sqlite3-6.0.8/schema.sql
 			
-			git clone https://github.com/linuxbuh/zabbix-proxy.git
-			
-			cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.conf /etc/zabbix/zabbix_proxy.conf
-			
-			cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.psk /etc/zabbix/zabbix_proxy.psk
-			
-			systemctl start zabbix-proxy
-
-			systemctl status zabbix-proxy
-			
-			git clone https://github.com/linuxbuh/zabbix-agent.git
-
-			cp -f /tmp/zabbix-agent/linux/zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf
-
-			service zabbix-agent restart
-
-			service zabbix-agent status
 			
 	fi
 
+			
+git clone https://github.com/linuxbuh/zabbix-proxy.git
+			
+cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.conf /etc/zabbix/zabbix_proxy.conf
+			
+cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.psk /etc/zabbix/zabbix_proxy.psk
+			
+systemctl start zabbix-proxy
+
+systemctl status zabbix-proxy
+
+exec /tmp/install-zabbix-agent-stanalone-6.0.sh

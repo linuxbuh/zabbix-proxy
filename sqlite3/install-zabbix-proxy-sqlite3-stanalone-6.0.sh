@@ -135,6 +135,8 @@ wget -O /tmp/install-zabbix-agent-stanalone-6.0.sh https://raw.githubusercontent
             
 			chown -R zabbix:zabbix /var/lib/zabbix
 			
+			yum install -y deltarpm
+			
 		if [ $VERSION_OSRELEASE = 9 ]; then
 			
 			rpm -ivh https://repo.zabbix.com/zabbix/6.0/rhel/9/x86_64/zabbix-release-6.0-3.el9.noarch.rpm

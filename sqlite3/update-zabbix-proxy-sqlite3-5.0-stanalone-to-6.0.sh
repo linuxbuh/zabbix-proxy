@@ -51,7 +51,8 @@ systemctl stop zabbix-agent2
 
 #Устанавливаем какие пакеты качать для Debian и Ubuntu
 	if [ $PAKETMANAGER = DEB ]; then
-		  	
+		
+		
 		rm -Rf /etc/apt/sources.list.d/zabbix.list
 		
 		if [ $VERSION_OSRELEASE = 11 ]; then
@@ -129,9 +130,11 @@ systemctl stop zabbix-agent2
 #Устанавливаем какие пакеты качать для Rhel? Centos и производных
 	if [ $PAKETMANAGER = RPM ]; then
 	  	
-			if [ $VERSION_OSRELEASE = 9 ]; then
+		yum install -y deltarpm
+		
+		if [ $VERSION_OSRELEASE = 9 ]; then
 			
-			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/9/x86_64/zabbix-release-6.0-3.el9.noarch.rpm
+		rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/9/x86_64/zabbix-release-6.0-3.el9.noarch.rpm
 					
 		fi
 		

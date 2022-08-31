@@ -171,7 +171,17 @@ cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.conf /etc/zabbix/zabbix_proxy.conf
 cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.psk /etc/zabbix/zabbix_proxy.psk
 
 systemctl start zabbix-proxy
+			
+systemctl status zabbix-proxy
+
+git clone https://github.com/linuxbuh/zabbix-agent.git
+
+cp -f /tmp/zabbix-agent/linux/zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf
+			
+cp -f /tmp/zabbix-agent/linux/zabbix_agentd.conf /etc/zabbix_agentd.conf
 
 systemctl start zabbix-agent
+			
+systemctl status zabbix-agent
 			
 

@@ -36,7 +36,7 @@ echo -e "\e[1;33;4;44mВаш дистрибутив LINUX - $OSRELEASE\e[0m"
 	    PAKETMANAGER=RPM
 	fi
 	
-	if [ $IDLIKE_OSRELEASE = rhel ]; then
+	if [ $OSRELEASE = almalinux ]; then
 	    PAKET=rpm
 	    PAKETMANAGER=RPM
 	fi

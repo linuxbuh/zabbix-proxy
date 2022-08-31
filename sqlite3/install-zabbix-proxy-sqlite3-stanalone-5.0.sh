@@ -168,7 +168,7 @@ wget -O /tmp/install-zabbix-agent-stanalone-6.0.sh https://raw.githubusercontent
 			
 			gunzip /usr/share/doc/zabbix-proxy-sqlite3-6.0.8/schema.sql.gz
 			
-			sqlite3 /var/lib/zabbix/zabbix_proxy_db < /usr/share/doc/zabbix-proxy-sqlite3-6.0.8/schema.sql
+			sqlite3 /var/lib/zabbix/zabbix_proxy_db < /usr/share/doc/zabbix-proxy-sqlite3-5.0.27/schema.sql
 			
 			
 	fi

@@ -143,7 +143,15 @@ systemctl stop zabbix-agent2
 	  	
 		yum remove -y zabbix-proxy zabbix-proxy-sqlite3 zabbix-release zabbix-agent2 zabbix-agent
 		
-		yum install -y deltarpm pcre2
+		yum install -y deltarpm pcre2 policycoreutils-python
+		
+		semodule -i zabbix_server_custom.pp
+		
+		setsebool -P zabbix_can_network=1
+		
+		setsebool -P httpd_can_connect_zabbix=1
+		
+		setsebool -P zabbix_run_sudo=1
 		
 		if [ $VERSION_OSRELEASE = 9 ]; then
 			
@@ -174,6 +182,10 @@ systemctl stop zabbix-agent2
 			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/7/x86_64/zabbix-sql-scripts-6.0.8-release1.el7.noarch.rpm
 					
 		fi
+		
+			gunzip /usr/share/zabbix-proxy-sqlite3/schema.sql.gz			
+			
+			sqlite3 /var/lib/zabbix/zabbix_proxy_db < /usr/share/zabbix-proxy-sqlite3/schema.sql
 					
 	fi
 	

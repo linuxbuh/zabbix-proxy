@@ -132,47 +132,59 @@ wget -O /tmp/install-zabbix-agent-stanalone-6.0.sh https://raw.githubusercontent
 
 #Устанавливаем какие пакеты качать для Rhel? Centos и производных
 	if [ $PAKETMANAGER = RPM ]; then
-		  
+		  						
 			mkdir /var/lib/zabbix
 			
 			touch /var/lib/zabbix/zabbix_proxy_db
             
 			chown -R zabbix:zabbix /var/lib/zabbix
 			
-			yum install -y deltarpm
+			yum install -y deltarpm pcre2 policycoreutils-python
 			
-		if [ $VERSION_OSRELEASE = 9 ]; then
+			semodule -i zabbix_server_custom.pp
+		
+			setsebool -P zabbix_can_network=1
+		
+			setsebool -P httpd_can_connect_zabbix=1
+		
+			setsebool -P zabbix_run_sudo=1
 			
-			rpm -ivh https://repo.zabbix.com/zabbix/6.0/rhel/9/x86_64/zabbix-release-6.0-3.el9.noarch.rpm
+	if [ $VERSION_OSRELEASE = 9 ]; then
+			
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/9/x86_64/zabbix-release-6.0-3.el9.noarch.rpm
+		
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/9/x86_64/zabbix-proxy-sqlite3-6.0.8-release1.el9.x86_64.rpm
+			
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/9/x86_64/zabbix-sql-scripts-6.0.8-release1.el9.noarch.rpm
 					
 		fi
 		
 		if [ $VERSION_OSRELEASE = 8 ]; then
 			
-			rpm -ivh https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/zabbix-release-6.0-2.el8.noarch.rpm
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/zabbix-release-6.0-2.el8.noarch.rpm
+			
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/zabbix-proxy-sqlite3-6.0.8-release1.el8.x86_64.rpm
+			
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/zabbix-sql-scripts-6.0.8-release1.el8.noarch.rpm
 					
 		fi
 		
 		if [ $VERSION_OSRELEASE = 7 ]; then
 			
-			rpm -ivh https://repo.zabbix.com/zabbix/6.0/rhel/7/x86_64/zabbix-release-6.0-2.el7.noarch.rpm
-					
-		fi
-		
-		if [ $VERSION_OSRELEASE = 6 ]; then
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/7/x86_64/zabbix-release-6.0-2.el7.noarch.rpm
 			
-			rpm -ivh https://repo.zabbix.com/zabbix/6.0/rhel/6/x86_64/zabbix-release-6.0-2.el6.noarch.rpm
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/7/x86_64/zabbix-proxy-sqlite3-6.0.8-release1.el7.x86_64.rpm
+			
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/7/x86_64/zabbix-sql-scripts-6.0.8-release1.el7.noarch.rpm
 					
 		fi
 		
 	
 			yum update
+								
+			gunzip /usr/share/zabbix-proxy-sqlite3/schema.sql.gz
 			
-			yum install -y zabbix-agent zabbix-proxy-sqlite3 zabbix-sql-scripts git
-			
-			gunzip /usr/share/doc/zabbix-proxy-sqlite3-6.0.8/schema.sql.gz
-			
-			sqlite3 /var/lib/zabbix/zabbix_proxy_db < /usr/share/doc/zabbix-proxy-sqlite3-6.0.8/schema.sql
+			sqlite3 /var/lib/zabbix/zabbix_proxy_db < /usr/share/zabbix-proxy-sqlite3/schema.sql
 			
 			
 	fi
@@ -183,6 +195,10 @@ git clone https://github.com/linuxbuh/zabbix-proxy.git
 cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.conf /etc/zabbix/zabbix_proxy.conf
 			
 cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.psk /etc/zabbix/zabbix_proxy.psk
+
+cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.conf /etc/zabbix_proxy.conf
+			
+cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.psk /etc/zabbix_proxy.psk
 			
 systemctl start zabbix-proxy
 

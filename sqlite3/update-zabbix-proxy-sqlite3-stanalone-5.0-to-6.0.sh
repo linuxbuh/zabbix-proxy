@@ -44,6 +44,8 @@ echo -e "\e[1;33;4;44mВаш дистрибутив LINUX - $OSRELEASE\e[0m"
 
 
 systemctl stop zabbix-proxy
+
+systemctl stop zabbix-proxy-sqlite3
 			
 systemctl stop zabbix-agent
 			
@@ -173,9 +175,15 @@ cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.conf /etc/zabbix/zabbix_proxy.conf
 			
 cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.psk /etc/zabbix/zabbix_proxy.psk
 
-systemctl start zabbix-proxy
+cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.conf /etc/zabbix_proxy.conf
 			
-systemctl status zabbix-proxy
+cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.psk /etc/zabbix_proxy.psk
+
+systemctl start zabbix-proxy
+
+systemctl start zabbix-proxy-sqlite3
+			
+systemctl status zabbix-proxy-sqlite3
 
 wget -O /tmp/update-zabbix-agent-stanalone-5.0-to-6.0.sh https://raw.githubusercontent.com/linuxbuh/zabbix-agent/main/linux/update-zabbix-agent-stanalone-5.0-to-6.0.sh
 

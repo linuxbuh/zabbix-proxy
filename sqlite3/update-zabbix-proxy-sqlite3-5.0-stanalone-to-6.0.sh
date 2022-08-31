@@ -49,26 +49,120 @@ systemctl stop zabbix-agent
 			
 systemctl stop zabbix-agent2
 
-wget -O /tmp/install-zabbix-proxy-sqlite3-stanalone-6.0.sh https://raw.githubusercontent.com/linuxbuh/zabbix-proxy/main/sqlite3/install-zabbix-proxy-sqlite3-stanalone-6.0.sh
-
 #Устанавливаем какие пакеты качать для Debian и Ubuntu
 	if [ $PAKETMANAGER = DEB ]; then
-		  						
-			apt-get remove -y zabbix-release zabbix-agent zabbix-agent2 zabbix-proxy zabbix-proxy-sqlite3 zabbix-proxy-mysql zabbix-proxy-pgsql zabbix-sql-scripts
+		  	
+		rm -Rf /etc/apt/sources.list.d/zabbix.list
+		
+		if [ $VERSION_OSRELEASE = 11 ]; then
+			
+			wget -O /tmp/zabbix-release_6.0-3%2Bdebian11_all.deb https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bdebian11_all.deb
+
+			dpkg -i /tmp/zabbix-release_6.0-3%2Bdebian11_all.deb
+			
+		fi
+		
+		if [ $VERSION_OSRELEASE = 10 ]; then
+			
+			wget -O /tmp/zabbix-release_6.0-3%2Bdebian10_all.deb https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bdebian10_all.deb
+
+			dpkg -i /tmp/zabbix-release_6.0-3%2Bdebian10_all.deb
+			
+		fi
+		
+		if [ $VERSION_OSRELEASE = 9 ]; then
+			
+			wget -O /tmp/zabbix-release_6.0-3%2Bdebian9_all.deb https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bdebian9_all.deb
+
+			dpkg -i /tmp/zabbix-release_6.0-3%2Bdebian9_all.deb
+			
+		fi
+		
+		if [ $VERSION_OSRELEASE = 22.04 ]; then
+			
+			wget -O /tmp/zabbix-release_6.0-3%2Bubuntu22.04_all.deb https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bubuntu22.04_all.deb
+
+			dpkg -i /tmp/zabbix-release_6.0-3%2Bubuntu22.04_all.deb
+			
+		fi
+		
+		if [ $VERSION_OSRELEASE = 20.04 ]; then
+			
+			wget -O /tmp/zabbix-release_6.0-3%2Bubuntu20.04_all.deb https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bubuntu20.04_all.deb
+
+			dpkg -i /tmp/zabbix-release_6.0-3%2Bubuntu20.04_all.deb
+			
+		fi
+		
+		if [ $VERSION_OSRELEASE = 18.04 ]; then
+			
+			wget -O /tmp/zabbix-release_6.0-3%2Bubuntu18.04_all.deb https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bubuntu18.04_all.deb
+
+			dpkg -i /tmp/zabbix-release_6.0-3%2Bubuntu18.04_all.deb
+			
+		fi
+		
+		if [ $VERSION_OSRELEASE = 16.04 ]; then
+			
+			wget -O /tmp/zabbix-release_6.0-3%2Bubuntu16.04_all.deb https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bubuntu16.04_all.deb
+
+			dpkg -i /tmp/zabbix-release_6.0-3%2Bubuntu16.04_all.deb
+			
+		fi
+		
+		if [ $VERSION_OSRELEASE = 14.04 ]; then
+			
+			wget -O /tmp/zabbix-release_6.0-3%2Bubuntu14.04_all.deb https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bubuntu14.04_all.deb
+
+			dpkg -i /tmp/zabbix-release_6.0-3%2Bubuntu14.04_all.deb
+			
+		fi
+			
+			apt-get update
+			
+			apt-get remove -y zabbix-agent2
+			
+			apt-get install --only-upgrade -y zabbix-agent zabbix-proxy-sqlite3 zabbix-sql-scripts
 			
 	fi
 
 #Устанавливаем какие пакеты качать для Rhel? Centos и производных
 	if [ $PAKETMANAGER = RPM ]; then
 	  	
-			yum remove -y zabbix-release zabbix-agent zabbix-agent2 zabbix-proxy zabbix-proxy-sqlite3 zabbix-proxy-mysql zabbix-proxy-pgsql zabbix-sql-scripts
+			if [ $VERSION_OSRELEASE = 9 ]; then
 			
-			rm -f /etc/yum.repos.d/zabbix.repo
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/9/x86_64/zabbix-release-6.0-3.el9.noarch.rpm
+					
+		fi
+		
+		if [ $VERSION_OSRELEASE = 8 ]; then
+			
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/zabbix-release-6.0-2.el8.noarch.rpm
+					
+		fi
+		
+		if [ $VERSION_OSRELEASE = 7 ]; then
+			
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/7/x86_64/zabbix-release-6.0-2.el7.noarch.rpm
+					
+		fi
+		
+		if [ $VERSION_OSRELEASE = 6 ]; then
+			
+			rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/6/x86_64/zabbix-release-6.0-2.el6.noarch.rpm
+					
+		fi
+		
+		yum update
+			
+		yum remove -y zabbix-agent2
+			
+		yum upgrade -y zabbix-agent zabbix-proxy-sqlite3 zabbix-sql-scripts
 				
 	fi
 
-rm -f /var/lib/zabbix/zabbix_proxy_db
+systemctl start zabbix-proxy
+
+systemctl start zabbix-agent
 			
-rm -f /usr/share/doc/zabbix-proxy-sqlite3/*
-			
-exec bash /tmp/install-zabbix-proxy-sqlite3-stanalone-6.0.sh
+

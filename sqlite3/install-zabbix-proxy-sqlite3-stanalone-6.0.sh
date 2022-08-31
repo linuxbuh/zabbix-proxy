@@ -41,15 +41,17 @@ echo -e "\e[1;33;4;44mВаш дистрибутив LINUX - $OSRELEASE\e[0m"
 	    PAKETMANAGER=RPM
 	fi
 
+	
+mkdir /var/lib/zabbix
+			
+touch /var/lib/zabbix/zabbix_proxy_db
+            
+chown -R zabbix:zabbix /var/lib/zabbix
+
+
 #Устанавливаем какие пакеты качать для Debian и Ubuntu
 	if [ $PAKETMANAGER = DEB ]; then
-		  	
-			mkdir /var/lib/zabbix
-			
-			touch /var/lib/zabbix/zabbix_proxy_db
-            
-			chown -R zabbix:zabbix /var/lib/zabbix
-			
+		  			
 		if [ $VERSION_OSRELEASE = 11 ]; then
 			
 			wget -O /tmp/zabbix-release_6.0-3%2Bdebian11_all.deb https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bdebian11_all.deb

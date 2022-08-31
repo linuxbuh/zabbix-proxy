@@ -53,6 +53,10 @@ chown -R zabbix:zabbix /var/run/zabbix
 
 systemctl stop zabbix-proxy
 
+systemctl stop zabbix-proxy-mysql
+
+systemctl stop zabbix-proxy-pgsql
+
 systemctl stop zabbix-proxy-sqlite3
 			
 systemctl stop zabbix-agent
@@ -62,7 +66,7 @@ systemctl stop zabbix-agent2
 #Устанавливаем какие пакеты качать для Debian и Ubuntu
 	if [ $PAKETMANAGER = DEB ]; then
 		
-		apt-get remove -y zabbix-proxy-sqlite3 zabbix-proxy zabbix-agent2 zabbix-agent
+		apt-get remove -y zabbix-proxy-sqlite3 zabbix-proxy zabbix-agent2 zabbix-agent zabbix-proxy-mysql zabbix-proxy-pgsq
 		
 		rm -Rf /etc/apt/sources.list.d/zabbix.list
 		
@@ -147,7 +151,7 @@ systemctl stop zabbix-agent2
 #Устанавливаем какие пакеты качать для Rhel? Centos и производных
 	if [ $PAKETMANAGER = RPM ]; then
 	  	
-		yum remove -y zabbix-proxy zabbix-proxy-sqlite3 zabbix-release zabbix-agent2 zabbix-agent
+		yum remove -y zabbix-proxy zabbix-proxy-sqlite3 zabbix-release zabbix-agent2 zabbix-agent zabbix-proxy-mysql zabbix-proxy-pgsq
 		
 		yum install -y deltarpm pcre2 policycoreutils-python
 		

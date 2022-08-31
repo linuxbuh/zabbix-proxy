@@ -183,7 +183,9 @@ systemctl stop zabbix-agent2
 					
 		fi
 		
-			gunzip /usr/share/zabbix-proxy-sqlite3/schema.sql.gz			
+			gunzip /usr/share/zabbix-proxy-sqlite3/schema.sql.gz
+
+			rm -f /var/lib/zabbix/zabbix_proxy_db
 			
 			sqlite3 /var/lib/zabbix/zabbix_proxy_db < /usr/share/zabbix-proxy-sqlite3/schema.sql
 					

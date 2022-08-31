@@ -123,7 +123,7 @@ systemctl stop zabbix-agent2
 			
 			apt-get remove -y zabbix-agent2
 			
-			apt-get install --only-upgrade -y zabbix-agent zabbix-proxy-sqlite3 zabbix-sql-scripts
+			apt-get install --only-upgrade -y zabbix-agent zabbix-proxy-sqlite3 zabbix-sql-scripts git
 			
 	fi
 
@@ -160,9 +160,15 @@ systemctl stop zabbix-agent2
 			
 		yum remove -y zabbix-agent2
 			
-		yum upgrade -y zabbix-agent zabbix-proxy-sqlite3 zabbix-sql-scripts
+		yum upgrade -y zabbix-agent zabbix-proxy-sqlite3 zabbix-sql-scripts git
 				
 	fi
+	
+git clone https://github.com/linuxbuh/zabbix-proxy.git
+			
+cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.conf /etc/zabbix/zabbix_proxy.conf
+			
+cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.psk /etc/zabbix/zabbix_proxy.psk
 
 systemctl start zabbix-proxy
 

@@ -7,7 +7,7 @@ wget https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix
 dpkg -i zabbix-release_6.0-3%2Bdebian11_all.deb
 
 apt-get update
-apt-get install zabbix-proxy-sqlite3
+apt-get install zabbix-proxy-sqlite3 zabbix
 
 gunzip /usr/share/doc/zabbix-proxy-sqlite3/schema.sql.gz
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /root
+cd /tmp
 
 rpm -ivh https://repo.zabbix.com/zabbix/5.0/rhel/7/x86_64/zabbix-release-5.0-1.el7.noarch.rpm
 
@@ -18,8 +18,8 @@ yum install git
 
 git clone https://github.com/linuxbuh/zabbix-proxy.git
 
-cp /root/zabbix-proxy/sqlite3/zabbix_proxy.conf /etc/zabbix/zabbix_proxy.conf
-cp /root/zabbix-proxy/sqlite3/zabbix_proxy.psk /etc/zabbix/zabbix_proxy.psk
+cp /tmp/zabbix-proxy/sqlite3/zabbix_proxy.conf /etc/zabbix/zabbix_proxy.conf
+cp /tmp/zabbix-proxy/sqlite3/zabbix_proxy.psk /etc/zabbix/zabbix_proxy.psk
 
 ufw allow 10050:10051/tcp
 ufw allow 10050:10051/udp

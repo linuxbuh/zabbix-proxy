@@ -44,6 +44,8 @@ echo -e "\e[1;33;4;44mВаш дистрибутив LINUX - $OSRELEASE\e[0m"
 #Устанавливаем какие пакеты качать для Debian и Ubuntu
 	if [ $PAKETMANAGER = DEB ]; then
 		  
+			wget -O 
+			
 			systemctl stop zabbix-proxy
 			
 			systemctl stop zabbix-agent
@@ -56,89 +58,7 @@ echo -e "\e[1;33;4;44mВаш дистрибутив LINUX - $OSRELEASE\e[0m"
 			
 			rm -f /usr/share/doc/zabbix-proxy-sqlite3/*
 			
-			touch /var/lib/zabbix/zabbix_proxy_db
-            
-			chown -R zabbix:zabbix /var/lib/zabbix
-			
-		if [ $VERSION_OSRELEASE = 11 ]; then
-			
-			wget -O /tmp/zabbix-release_6.0-3%2Bdebian11_all.deb https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bdebian11_all.deb
-
-			dpkg -i /tmp/zabbix-release_6.0-3%2Bdebian11_all.deb
-			
-		fi
-		
-		if [ $VERSION_OSRELEASE = 10 ]; then
-			
-			wget -O /tmp/zabbix-release_6.0-3%2Bdebian10_all.deb https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bdebian10_all.deb
-
-			dpkg -i /tmp/zabbix-release_6.0-3%2Bdebian10_all.deb
-			
-		fi
-		
-		if [ $VERSION_OSRELEASE = 9 ]; then
-			
-			wget -O /tmp/zabbix-release_6.0-3%2Bdebian9_all.deb https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bdebian9_all.deb
-
-			dpkg -i /tmp/zabbix-release_6.0-3%2Bdebian9_all.deb
-			
-		fi
-		
-		if [ $VERSION_OSRELEASE = 22.04 ]; then
-			
-			wget -O /tmp/zabbix-release_6.0-3%2Bubuntu22.04_all.deb https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bubuntu22.04_all.deb
-
-			dpkg -i /tmp/zabbix-release_6.0-3%2Bubuntu22.04_all.deb
-			
-		fi
-		
-		if [ $VERSION_OSRELEASE = 20.04 ]; then
-			
-			wget -O /tmp/zabbix-release_6.0-3%2Bubuntu20.04_all.deb https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bubuntu20.04_all.deb
-
-			dpkg -i /tmp/zabbix-release_6.0-3%2Bubuntu20.04_all.deb
-			
-		fi
-		
-		if [ $VERSION_OSRELEASE = 18.04 ]; then
-			
-			wget -O /tmp/zabbix-release_6.0-3%2Bubuntu18.04_all.deb https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bubuntu18.04_all.deb
-
-			dpkg -i /tmp/zabbix-release_6.0-3%2Bubuntu18.04_all.deb
-			
-		fi
-		
-		if [ $VERSION_OSRELEASE = 16.04 ]; then
-			
-			wget -O /tmp/zabbix-release_6.0-3%2Bubuntu16.04_all.deb https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bubuntu16.04_all.deb
-
-			dpkg -i /tmp/zabbix-release_6.0-3%2Bubuntu16.04_all.deb
-			
-		fi
-		
-		if [ $VERSION_OSRELEASE = 16.04 ]; then
-			
-			wget -O /tmp/zabbix-release_6.0-3%2Bubuntu14.04_all.deb https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bubuntu14.04_all.deb
-
-			dpkg -i /tmp/zabbix-release_6.0-3%2Bubuntu14.04_all.deb
-			
-		fi
-
-			apt-get update
-			
-			apt-get install zabbix-proxy-sqlite3
-			
-			sqlite3 /var/lib/zabbix/zabbix_proxy_db < /usr/share/doc/zabbix-proxy-sqlite3/schema.sql
-			
-			git clone https://github.com/linuxbuh/zabbix-proxy.git
-			
-			cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.conf /etc/zabbix/zabbix_proxy.conf
-			
-			cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.psk /etc/zabbix/zabbix_proxy.psk
-			
-			systemctl start zabbix-proxy
-
-			systemctl status zabbix-proxy
+			exec 
 			
 	fi
 

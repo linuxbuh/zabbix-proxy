@@ -109,7 +109,7 @@ wget -O /tmp/install-zabbix-agent-stanalone-6.0.sh https://raw.githubusercontent
 			
 		fi
 		
-		if [ $VERSION_OSRELEASE = 16.04 ]; then
+		if [ $VERSION_OSRELEASE = 14.04 ]; then
 			
 			wget -O /tmp/zabbix-release_6.0-3%2Bubuntu14.04_all.deb https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-3%2Bubuntu14.04_all.deb
 

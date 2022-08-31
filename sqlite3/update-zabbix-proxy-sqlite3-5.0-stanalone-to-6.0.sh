@@ -71,5 +71,3 @@ rm -f /var/lib/zabbix/zabbix_proxy_db
 rm -f /usr/share/doc/zabbix-proxy-sqlite3/*
 			
 exec /tmp/install-zabbix-proxy-sqlite3-stanalone-6.0.sh
-			
-exec /tmp/install-zabbix-proxy-sqlite3-stanalone-6.0.sh

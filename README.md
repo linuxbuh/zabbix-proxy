@@ -1,1 +1,1 @@
-zabbix-proxy
+# Скрипты установки zabbix-proxy

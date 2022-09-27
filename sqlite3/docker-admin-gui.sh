@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo
 echo -e "\e[1;31;42mУпроаление Docker контейнером\e[0m"

@@ -4,7 +4,7 @@ cd /opt/zabbix-proxy-sqlite3
 
 docker-compose stop
 
-cd /
+cd /tmp
 
 rm -f /opt/zabbix-proxy-sqlite3
 
@@ -14,7 +14,7 @@ wget -O /opt/zabbix-proxy-sqlite3/docker-compose.yml https://raw.githubuserconte
 
 git clone https://github.com/linuxbuh/zabbix-proxy.git
 
-cp /root/zabbix-proxy/sqlite3/zabbix_proxy.psk /opt/zabbix-proxy-sqlite3/enc/zabbix_proxy.psk
+cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.psk /opt/zabbix-proxy-sqlite3/enc/zabbix_proxy.psk
 
 cd /opt/zabbix-proxy-sqlite3
 

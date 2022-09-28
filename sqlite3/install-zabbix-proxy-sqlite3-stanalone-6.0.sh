@@ -139,7 +139,7 @@ wget -O /tmp/install-zabbix-agent-stanalone-6.0.sh https://raw.githubusercontent
             
 			chown -R zabbix:zabbix /var/lib/zabbix
 			
-			yum install -y deltarpm pcre2 policycoreutils-python
+			yum install -y deltarpm pcre2 policycoreutils-python git
 			
 			semodule -i zabbix_server_custom.pp
 		
@@ -201,6 +201,8 @@ cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.conf /etc/zabbix_proxy.conf
 cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.psk /etc/zabbix_proxy.psk
 			
 systemctl start zabbix-proxy
+
+systemctl enable zabbix-proxy
 
 systemctl status zabbix-proxy
 

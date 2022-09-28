@@ -135,7 +135,7 @@ wget -O /tmp/install-zabbix-agent-stanalone-5.0.sh https://raw.githubusercontent
             
 			chown -R zabbix:zabbix /var/lib/zabbix
 			
-			yum install -y deltarpm
+			yum install -y deltarpm git
 			
 		if [ $VERSION_OSRELEASE = 9 ]; then
 			
@@ -164,7 +164,7 @@ wget -O /tmp/install-zabbix-agent-stanalone-5.0.sh https://raw.githubusercontent
 	
 			yum update
 			
-			yum install -y zabbix-agent zabbix-proxy-sqlite3 zabbix-sql-scripts git
+			yum install -y zabbix-agent zabbix-proxy-sqlite3 zabbix-sql-scripts
 			
 			gunzip /usr/share/zabbix-sqlite3/schema.sql.gz
 			
@@ -173,15 +173,20 @@ wget -O /tmp/install-zabbix-agent-stanalone-5.0.sh https://raw.githubusercontent
 			
 	fi
 
-			
 git clone https://github.com/linuxbuh/zabbix-proxy.git
 			
 cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.conf /etc/zabbix/zabbix_proxy.conf
 			
 cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.psk /etc/zabbix/zabbix_proxy.psk
+
+cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.conf /etc/zabbix_proxy.conf
+			
+cp -f /tmp/zabbix-proxy/sqlite3/zabbix_proxy.psk /etc/zabbix_proxy.psk
 			
 systemctl start zabbix-proxy
 
+systemctl enable zabbix-proxy
+
 systemctl status zabbix-proxy
 
-exec bash /tmp/install-zabbix-agent-stanalone-6.0.sh
+exec bash /tmp/install-zabbix-agent-stanalone-5.0.sh

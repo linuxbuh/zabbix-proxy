@@ -153,7 +153,7 @@ systemctl stop zabbix-agent2
 	  	
 		yum remove -y zabbix-proxy zabbix-proxy-sqlite3 zabbix-release zabbix-agent2 zabbix-agent zabbix-proxy-mysql zabbix-proxy-pgsq
 		
-		yum install -y deltarpm pcre2 policycoreutils-python
+		yum install -y deltarpm pcre2 policycoreutils-python git
 		
 		semodule -i zabbix_server_custom.pp
 		
